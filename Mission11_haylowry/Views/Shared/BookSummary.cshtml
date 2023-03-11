@@ -1,0 +1,36 @@
+﻿@{
+
+}
+@model Book
+
+<div class="card card-outline-primary m-1 p-1">
+    <div class="bg-light p-1">
+        <h4>
+            @Model.Title
+            <span class="badge bg-info" style="float:right">
+                <small>@Model.Price.ToString("c")</small>
+            </span>
+        </h4>
+    </div>
+    <!--Bootstrap change to List Group-->
+    <ul class="list-group" style="width: 50%;">
+        <li class="list-group-item"><b>Author: </b>@Model.Author</li>
+        <li class="list-group-item"><b>Publisher: </b>@Model.Publisher</li>
+        <li class="list-group-item"><b>ISBN: </b>@Model.Isbn</li>
+        <li class="list-group-item"><b>Classification: </b>@Model.Classification</li>
+        <li class="list-group-item"><b>Category: </b>@Model.Category</li>
+        <li class="list-group-item"><b>PageCount: </b>@Model.PageCount</li>
+    </ul>
+    
+
+    <form method="post" asp-page="/Cart">
+        <span class="card-text">
+            <input type="hidden" asp-for="@Model.BookId" />
+            <input type="hidden" name="returnURL" value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+            <button type="submit" class="btn btn-success btn-sm float-end">Add To Cart</button>
+        </span>
+    </form>
+
+</div>
+
+
